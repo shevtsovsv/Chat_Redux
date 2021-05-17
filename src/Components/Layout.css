@@ -1,0 +1,15 @@
+
+
+.Row2{
+    display: flex;
+}
+
+.Layout{
+    max-width: 60%;
+    margin: auto;
+}
+
+.Col1{
+    font-size: 32px;
+    text-align: center;
+}
