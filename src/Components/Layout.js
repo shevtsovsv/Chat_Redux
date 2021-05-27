@@ -1,5 +1,5 @@
 import React from "react";
-import MessageFields from "./MessageFileds";
+import MessageFields from "./MessageFields";
 import Header from "./Header";
 import Menu from "./Menu";
 import {Col, Container, Overlay, Row} from "react-bootstrap";
@@ -14,7 +14,7 @@ const Layout = (props) => {
             <div className="Layout">
                 <Row className="Row1">
                     <Col className="Col1">
-                        <Header className="header" chatId={props.idNumber}/>
+                        <Header className="header" chatId={props.chatId}/>
                     </Col>
                 </Row>
                 <Row className="Row2">
@@ -22,7 +22,7 @@ const Layout = (props) => {
                         <Menu/>
                     </Col>
                     <Col className="Col3" xs={10}>
-                        <MessageFields/>
+                        <MessageFields chatId={props.chatId}/>
                     </Col>
                 </Row>
             </div>
