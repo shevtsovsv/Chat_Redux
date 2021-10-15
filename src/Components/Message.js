@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import {orange} from "@material-ui/core/colors";
-
 
 export const Message = (props) => {
 
