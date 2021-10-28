@@ -7,60 +7,47 @@ import "./Layout.css"
 import { bindActionCreators } from "redux";
 import connect from "react-redux/es/connect/connect";
 import { sendMessage } from "../actions/messageActions";
+import { addMessage} from "../actions/addMessageAction";
 
 const mapStateToProps = ({ chatReducer }) => ({
     chats: chatReducer.chats,
+    messages: chatReducer.messages
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage, addMessage }, dispatch);
 
 const Layout = (props) => {
 
-    const {chatId, sendMessage, chats} = props;
+    const {chatId, sendMessage, chats, addMessage, messages} = props;
 
-    let [messages, setMessages] = useState( {
-        1:{text: "Hello",
-            author: "Bot"
-        },
-        2:{text: "World",
-            author: "Bot"
-        }})
-
-    // let [chat, setChat] = useState({
-    //     1: {title: "Chat1",
-    //         messageList: [1]
+    // let [messages, setMessages] = useState( {
+    //     1:{text: "Hello",
+    //         author: "Bot"
     //     },
-    //     2:{title:"Chat2",
-    //         messageList:[2]
-    //     }
-    // })
-    console.log(sendMessage)
+    //     2:{text: "World",
+    //         author: "Bot"
+    //     }})
 
     useEffect(()=>{
         if(messages[Object.keys(messages).length].author === "Me"){
             console.log("mememe")
             const messageId1 = Object.keys(messages).length + 1;
-            setMessages({...messages,[messageId1]:{
-                    text: "Bugger off, I am Bot",
-                    author: "Bot"
-                }})
+            addMessage(messageId1, "Bugger off, I am Bot","Bot")
             chats[chatId].messageList.push(messageId1);
         }
     }) ;
 
-    const sendMsgFunc = (msg,author) => {
-        if(msg.length>0){
-        const chatId = props.chatId;
-        if(inputFunc){
-            const messageId = Object.keys(messages).length + 1;
-            setMessages({...messages,[messageId]:{
-                    text: msg,
-                    author: "Me"
-                }})
-            // chat[chatId].messageList.push(messageId);
-            sendMessage(messageId,msg,author,chatId)
-        }}
-    }
+    // const sendMsgFunc = (msg,author) => {
+    //     if(msg.length>0){
+    //         const chatId = props.chatId;
+    //         const messageId = Object.keys(messages).length + 1;
+    //         setMessages({...messages,[messageId]:{
+    //                 text: msg,
+    //                 author: "Me"
+    //             }})
+    //         sendMessage(messageId,msg,author,chatId)
+    //     }
+    // }
 
     // const addChat = (inputText) => {
     //     const chatIndex = Object.keys(chat).length +1;
@@ -94,7 +81,7 @@ const Layout = (props) => {
                         <Menu/>
                     </Col>
                     <Col className="Col3" xs={9}>
-                        <MessageFields chatId={props.chatId} messages={messages} sendMsgFunc={sendMsgFunc}/>
+                        <MessageFields chatId={props.chatId} />
                     </Col>
                 </Row>
             </div>

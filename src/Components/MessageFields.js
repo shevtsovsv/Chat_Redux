@@ -3,24 +3,35 @@ import {Message} from "./Message";
 import {Button, Container, FormControl, InputGroup} from 'react-bootstrap';
 import bindActionCreators from "react-redux/lib/utils/bindActionCreators";
 import connect from "react-redux/es/connect/connect";
+import {addMessage} from "../actions/addMessageAction";
+import {sendMessage} from "../actions/messageActions";
 
-const mapStateToProps = ({ chatReducer }) => ({
-    chats: chatReducer.chats,
-});
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
-const MessageFields = (props) => {
+    const mapStateToProps = ({ chatReducer }) => ({
+        chats: chatReducer.chats,
+        messages: chatReducer.messages,
+    });
 
-    const {messages, sendMsgFunc, chats} = props;
+    const mapDispatchToProps = dispatch => bindActionCreators({addMessage, sendMessage}, dispatch);
 
-    console.log(chats);
+    const MessageFields = (props) => {
+
+    const {messages, sendMessage, addMessage, chats, chatId} = props;
+
     let [input, setInput] = useState("")
 
-    // let formatedMessageArray = messages.map((item,i) => <Message key={i} text={item.text}
-    //      author={item.author}></Message>)
+    useEffect(()=>{
+        fetch('https://shevtsovsv.github.io/online-api/messages.json'
+       ).then(body => body.json()).then(json => {console.log(json)
+                    json.forEach(msg => {
+                        props.sendMessage(msg.id, msg.text, msg.sender, msg.chatId);
+                })
 
-    // console.log(messages[0].text)
+            })
+       }, []
+    ) ;
+    
 
     let formatedMessageArray2 = [];
 
@@ -36,28 +47,33 @@ const MessageFields = (props) => {
         setInput(event.target.value);
     }
     const handleClick=(msg)=>{
-        sendMsgFunc(msg);
+        console.log(chatId)
+        console.log("---",msg)
+        const messageId = Object.keys(messages).length+1 
+        console.log(messageId)
+        addMessage(messageId, msg, "Me");
+        console.log(messages);
         // console.log("input " + input, "msg " + msg);
         setInput("");
+        sendMessage(messageId,msg,"Me",chatId)
+        console.log(chats)
     };
 
     const enterFunc = (event,msg) => {
         if(event.keyCode === 13){
-            sendMsgFunc(msg);
+            addMessage(msg);
             setInput("");
         };
     }
     // console.log(props)
 
-
-
-    const {chatId} = props;
-
     const messageElements = chats[chatId].messageList.map((messageId,index)=>(
     <Message
         key={index}
         text={messages[messageId].text}
-        author={messages[messageId].author}/>));
+        author={messages[messageId].author}
+    />
+    ));
 
     return (
     <div>

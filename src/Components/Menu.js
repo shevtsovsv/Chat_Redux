@@ -18,8 +18,6 @@ const Menu = (props) => {
 
     let text1;
 
-    console.log(text1);
-
     const chatElements = Object.keys(chats).map(chatId => (
         <p key={chatId}><Link to={`/Chat/${chatId}`}>
        {chats[chatId].title}
