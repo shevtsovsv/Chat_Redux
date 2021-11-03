@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import MessageFields from "./MessageFields";
 import Header from "./Header";
 import Menu from "./Menu";
-import {Col, Container, Overlay, Row} from "react-bootstrap";
+import {Col,  Row} from "react-bootstrap";
 import "./Layout.css"
 import { bindActionCreators } from "redux";
 import connect from "react-redux/es/connect/connect";

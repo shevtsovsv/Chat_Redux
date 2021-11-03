@@ -32,7 +32,6 @@ export default function chatReducer(store = initialStore, action) {
         }
         case ADD_MESSAGE: {
             // const messagesId = Object.keys(store.messages).length + 1;
-            console.log(action.messagesId, action.text, action.author);
             return update(store, {
                 messages: { $merge: {
                     [action.messagesId]: {

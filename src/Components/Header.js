@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import bindActionCreators from "react-redux/lib/utils/bindActionCreators";
 import connect from "react-redux/es/connect/connect";
 const mapStateToProps = ({chatReducer}) => ({
@@ -9,7 +9,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
 const Header = (props) => {
     const {chatId, chats} = props;
-    console.log(chats);
     return `${chats[chatId].title}`;
 }
 Header.defaultProps = {chatId: 1};

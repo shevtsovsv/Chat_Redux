@@ -43,7 +43,6 @@ const Menu = (props) => {
 
     useEffect(()=>{
         text1 = document.querySelector(".inputText");
-        console.log(text1);
     });
 
 

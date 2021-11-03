@@ -21,16 +21,16 @@ import {sendMessage} from "../actions/messageActions";
 
     let [input, setInput] = useState("")
 
-    useEffect(()=>{
-        fetch('https://shevtsovsv.github.io/online-api/messages.json'
-       ).then(body => body.json()).then(json => {console.log(json)
-                    json.forEach(msg => {
-                        props.sendMessage(msg.id, msg.text, msg.sender, msg.chatId);
-                })
+    // useEffect(()=>{
+    //     fetch('https://shevtsovsv.github.io/online-api/messages.json'
+    //    ).then(body => body.json()).then(json => {console.log(json)
+    //                 json.forEach(msg => {
+    //                     props.sendMessage(msg.id, msg.text, msg.sender, msg.chatId);
+    //             })
 
-            })
-       }, []
-    ) ;
+    //         })
+    //    }, []
+    // ) ;
     
 
     let formatedMessageArray2 = [];
@@ -47,16 +47,11 @@ import {sendMessage} from "../actions/messageActions";
         setInput(event.target.value);
     }
     const handleClick=(msg)=>{
-        console.log(chatId)
-        console.log("---",msg)
         const messageId = Object.keys(messages).length+1 
-        console.log(messageId)
         addMessage(messageId, msg, "Me");
-        console.log(messages);
         // console.log("input " + input, "msg " + msg);
         setInput("");
-        sendMessage(messageId,msg,"Me",chatId)
-        console.log(chats)
+        sendMessage(messageId,chatId)
     };
 
     const enterFunc = (event,msg) => {
