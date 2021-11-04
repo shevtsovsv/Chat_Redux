@@ -48,10 +48,11 @@ import {sendMessage} from "../actions/messageActions";
     }
     const handleClick=(msg)=>{
         const messageId = Object.keys(messages).length+1 
-        addMessage(messageId, msg, "Me");
+        sendMessage(messageId,chatId)
+        addMessage(messageId, msg, "Me",chatId);
         // console.log("input " + input, "msg " + msg);
         setInput("");
-        sendMessage(messageId,chatId)
+        
     };
 
     const enterFunc = (event,msg) => {

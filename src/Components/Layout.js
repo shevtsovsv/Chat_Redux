@@ -28,14 +28,14 @@ const Layout = (props) => {
     //         author: "Bot"
     //     }})
 
-    useEffect(()=>{
-        if(messages[Object.keys(messages).length].author === "Me"){
-            console.log("mememe")
-            const messageId1 = Object.keys(messages).length + 1;
-            addMessage(messageId1, "Bugger off, I am Bot","Bot")
-            chats[chatId].messageList.push(messageId1);
-        }
-    }) ;
+    // useEffect(()=>{
+    //     if(messages[Object.keys(messages).length].author === "Me"){
+    //         console.log("mememe")
+    //         const messageId1 = Object.keys(messages).length + 1;
+    //         addMessage(messageId1, "Bugger off, I am Bot","Bot")
+    //         chats[chatId].messageList.push(messageId1);
+    //     }
+    // }) ;
 
     // const sendMsgFunc = (msg,author) => {
     //     if(msg.length>0){
